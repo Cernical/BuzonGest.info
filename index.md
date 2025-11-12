@@ -22,7 +22,7 @@ BuzonGest es una aplicación de gestión empresarial que incluye módulos para:
 | Botón Empleados | Gestión de usuarios del sistema |
 | Botón Asistencia | Control de horarios y registros |
 | Botón SQL | Consultas directas a la base de datos |
-| Botón Ajustes | Configuración del sistema |
+| Botón Ajustes | Configuración de la app |
 | Botón Salir | Cierra la aplicación |
 | Botón Ayuda | Abre esta documentación web |
 
