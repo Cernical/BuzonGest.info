@@ -1,43 +1,109 @@
-# Instrucciones de uso
+# Manual de Usuario - BuzonGest v2.3.3
 
-La base de datos requiere seguir un procedimiento a la hora de utilizar BuzonGest siguiendo unos pasos de manera secuencial, que son los siguientes:
+## Descripción General
 
-#### Reglas para la inserción:
+BuzonGest es una aplicación de gestión empresarial que incluye módulos para:
 
-- Deben insertarse primero todas las tablas de un nivel antes de pasar al siguiente
+- Gestión de empleados
+- Control de asistencia  
+- Consultas SQL
 
-- Dentro de un mismo nivel, el orden de inserción no importa
+---
 
-- Las tablas de nivel superior no dependen de ningún otro dato
+## Pantalla de Inicio (Index)
 
-## 1.- (Datos independientes - sin dependencias)
+**Acceso**: Pantalla principal al iniciar la aplicación
 
-- Ubicaciones
+### Funciones Principales
 
-- Comerciales
+| Elemento | Función |
+|----------|---------|
+| Selector de Usuario | Dropdown para elegir usuario activo |
+| Botón Empleados | Gestión de usuarios del sistema |
+| Botón Asistencia | Control de horarios y registros |
+| Botón SQL | Consultas directas a la base de datos |
+| Botón Ajustes | Configuración del sistema |
+| Botón Salir | Cierra la aplicación |
+| Botón Ayuda | Abre esta documentación web |
 
-- Familias de producto
+### Características
+- Los botones se habilitan según el cargo del usuario
+- Versión visible en barra superior
+- Autenticación requerida para acceder a módulos
 
-- Matrices
+---
 
-## 2.- (Dependen solo de datos del Nivel 1)
+## Gestión de Empleados
 
-- Cliente (depende de ubicacion y comercial)
+### Pantalla Principal (Empleados)
 
-- Inventario (depende de familia_producto)
+**Funcionalidades**:
+- Visualización de lista con ID, correo y nombre
+- Ordenamiento por columnas (click en cabeceras)
+- Búsqueda en tiempo real
+- Paginación para grandes volúmenes
+- Acciones rápidas por empleado
 
-## 3.- (Dependen de datos de Nivel 1 y 2)
+**Acciones Disponibles**:
+- Cambiar contraseña - Solicita confirmación con contraseña actual
+- Eliminar - Elimina con doble confirmación de seguridad
 
-- Centros (depende de cliente y ubicaciones)
+### Añadir Empleado (AnyadirEmpleado)
 
-- Contactos de clientes (depende de clientes)
+**Campos Obligatorios**:
+- Correo electrónico
+- Nombre completo  
+- Contraseña
 
-- Productos de matriz (depende de Inventario y matriz)
+**Validaciones**:
+- Verifica unicidad del correo
+- Campos obligatorios deben completarse
+- Navegación con tecla Enter entre campos
 
-- Productos de cliente (depende de inventario y cliente)
+---
 
-## 4.- (Dependen de datos de niveles anteriores)
+## Control de Asistencia
 
-- Contactos de centros (depende de centros)
+### Registros (Asistencia)
 
-- Pedidos (depende de centro, cliente e inventario)
+**Datos Mostrados**:
+- Empleado
+- Jornada
+- Turno  
+- Entrada
+- Salida
+
+**Funcionalidades**:
+- Edición in-situ de registros
+- Búsqueda y filtrado
+- Paginación de resultados
+- Actualizar datos en tiempo real
+
+### Consulta Avanzada (AsistenciaConsultar)
+
+**Parámetros Configurables**:
+- Selección de empleado específico
+- Rango de fechas personalizable
+- Fechas mediante dropdowns intuitivos
+
+**Métricas Calculadas**:
+
+| Métrica | Descripción |
+|---------|-------------|
+| Tiempo Total | Horas totales trabajadas |
+| Horas Extra Netas | Balance positivo/negativo |
+| Horas Festivas | Trabajo en días festivos |
+| Puntualidad | Porcentaje de días puntuales |
+| Días Incompletos | Registros sin hora de salida |
+| Gráfica Temporal | Evolución diaria de horas |
+
+---
+
+## Consultas SQL (Sql)
+
+### Funcionalidades Avanzadas
+
+**Ejecución Directa**:
+```sql
+-- Escribe consultas SQL directamente
+SELECT * FROM empleados WHERE cargo = 'Administración'
