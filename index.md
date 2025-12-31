@@ -144,6 +144,8 @@ Asistencia → **Consultar**
 - Tabla resumen
 - Gráfica de horas por día (si se consulta un solo empleado)
 
+> Para la mayoría de datos **se requiere tener registrado el horario** de cada empleado.
+
 ---
 
 ## 9. Módulo SQL
