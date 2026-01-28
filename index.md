@@ -167,5 +167,5 @@ Desde la barra superior puede acceder al apartado de ayuda online mediante el bo
 
 ---
 
-**Autor:** Kevin Marín Reina
-**Versión:** 3.9.1
+- **Autor:** Kevin Marín Reina
+- **Versión:** 3.9.1
