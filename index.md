@@ -1,255 +1,171 @@
-# Manual de Usuario  
-## BuzonGest v3.2.0
-
----
+# Manual de Usuario – **BuzonGest**
 
 ## 1. Introducción
+BuzonGest es una aplicación multiplataforma (Windows y Android) diseñada para la **gestión de empleados, control de asistencia y consultas administrativas**, con conexión segura a una base de datos MySQL/MariaDB mediante SSL.
 
-**BuzonGest** es una aplicación de escritorio desarrollada en Python con Kivy que permite la **gestión de empleados**, el **control de asistencia**, la **consulta de horas trabajadas**, la **ejecución de consultas SQL** y la **configuración básica de la aplicación**, todo ello conectado a una base de datos **MariaDB/MySQL mediante SSL**.
-
-La aplicación está orientada a entornos empresariales donde se requiere:
-- Control horario
-- Gestión de usuarios
-- Análisis de horas trabajadas
-- Acceso controlado por privilegios
+El sistema adapta sus funcionalidades según el **rol del usuario** (empleado, administrador o superusuario).
 
 ---
 
 ## 2. Requisitos del sistema
-
-- Sistema operativo: **Windows o Linux**
-- Base de datos: **MariaDB / MySQL**
-- Conexión a red con acceso al servidor de base de datos
-- Certificado SSL (`ca-cert.pem`)
-- Credenciales válidas de usuario
-- Permisos según rol asignado
+- Sistema operativo: **Windows o Android**
+- Conexión de red con acceso al servidor de base de datos
+- Credenciales de usuario válidas
+- Certificado SSL `ca-cert.pem` configurado
 
 ---
 
 ## 3. Inicio de la aplicación
+Al iniciar BuzonGest se muestra la **pantalla principal**, que incluye:
+- Barra superior de navegación
+- Botón de ayuda
+- Botón de inicio/cierre de sesión
+- Accesos a los distintos módulos
 
-Al iniciar **BuzonGest**, la aplicación realiza automáticamente:
-
-1. Limpieza del archivo de logs (`log.txt`)
-2. Carga de configuración desde `ajustes.json`
-3. Comprobación automática de actualizaciones
-4. Redirección a la pantalla principal
-
-Si existe una versión nueva, se descargará e instalará automáticamente.
+Si no existe conexión con la base de datos, la aplicación mostrará un aviso y deshabilitará el inicio de sesión.
 
 ---
 
-## 4. Pantalla principal (Inicio)
+## 4. Inicio de sesión
 
-Desde la pantalla principal se accede a los distintos módulos:
+### 4.1 Acceso
+1. Pulse **Iniciar sesión**.
+2. Introduzca su **usuario** y **contraseña**.
+3. Pulse **Confirmar**.
 
-- **Empleados**
+Si las credenciales son correctas, se habilitarán los módulos según su perfil.
+
+### 4.2 Cierre de sesión
+- Pulse **Cerrar sesión** en la barra superior.
+- Se bloquearán los accesos y se limpiará la sesión activa.
+
+---
+
+## 5. Roles de usuario
+
+### Empleado
+- Acceso a **Área Personal**
+- Consulta de su información y registros
+
+### Administrador
+- Área Personal
+- Asistencia
+- Gestión de empleados
+
+### Superusuario
+- Todas las funciones del administrador
+- Acceso al módulo **SQL**
+
+---
+
+## 6. Pantalla principal (Inicio)
+Desde el menú principal se puede acceder a:
+- **Área Personal**
 - **Asistencia**
-- **SQL**
+- **SQL** (según permisos)
 - **Ajustes**
 - **Salir**
 
-### Barra superior
-- **Ayuda**: abre la documentación online
-- **Iniciar sesión / Usuario activo**
-- **Cerrar sesión**
+---
+
+## 7. Área Personal
+Este módulo permite al usuario:
+- Consultar su información personal
+- Visualizar estadísticas de trabajo
+- Revisar horas trabajadas, descansos y puntualidad
 
 ---
 
-## 5. Inicio de sesión
+## 8. Asistencia
 
-Para acceder a la mayoría de funciones es obligatorio iniciar sesión.
+### 8.1 Funcionalidad
+Permite consultar y analizar los registros de asistencia por empleado o de forma global.
 
-### Pasos:
-1. Pulsa **Iniciar sesión**
-2. Introduce:
-   - Usuario (correo sin dominio)
-   - Contraseña
-3. Pulsa **Confirmar**
-
-Las credenciales se validan contra la base de datos usando **SSL**.
-
-> El usuario activo se guarda automáticamente en `ajustes.json`.
-
----
-
-## 6. Gestión de Empleados
-
-### Acceso
-Pantalla principal → **Empleados**
-
-### Funcionalidades
-- Listar empleados
-- Buscar empleados
-- Ordenar por:
-  - ID
-  - Correo
-  - Nombre
-- Paginación
-- Añadir empleados
-- Cambiar contraseña
-- Eliminar empleados
-
-### Añadir empleado
-1. Pulsa **Añadir**
-2. Introduce:
-   - Correo
-   - Nombre
-   - Contraseña
-3. Pulsa **Añadir**
-
-> La contraseña se almacena cifrada con **bcrypt**.
-
----
-
-## 7. Control de Asistencia
-
-### Acceso
-Pantalla principal → **Asistencia**
-
-### Funcionalidades
-- Listar registros de asistencia
-- Buscar registros
-- Ordenar por columnas
-- Paginación
-- Consultar estadísticas
-- Edición de registros (según permisos)
-
-Los datos mostrados incluyen:
-- Empleado
-- Jornada
-- Turno
-- Hora de entrada
-- Hora de salida
-
----
-
-## 8. Consulta de horas trabajadas
-
-### Acceso
-Asistencia → **Consultar**
-
-### Permite:
-- Seleccionar empleado o todos
-- Definir rango de fechas
-- Calcular automáticamente:
+### 8.2 Opciones disponibles
+- Selección de empleado o **Todos**
+- Rango de fechas
+- Cálculo automático de:
   - Horas trabajadas
-  - Tiempo de descanso
-  - Horas extra netas
+  - Horas de descanso
+  - Horas extra (positivas o negativas)
   - Horas festivas
-  - Puntualidad (%)
-  - Días incompletos
+  - Porcentaje de puntualidad
+  - Jornadas incompletas
 
-### Resultados
-- Tabla resumen
-- Gráfica de horas por día (si se consulta un solo empleado)
-
-> Para la mayoría de datos **se requiere tener registrado el horario** de cada empleado.
-
----
-
-## 9. Módulo SQL
-
-### Acceso
-Pantalla principal → **SQL**
-
-### Funcionalidades
-- Ejecutar consultas SQL manuales
-- Seleccionar tablas
-- Ordenar resultados
-- Buscar dentro de resultados
-- Editar registros directamente
-- Paginación automática
-
-> **Precaución**: las consultas se ejecutan directamente sobre la base de datos.
+### 8.3 Gráficas
+- Visualización gráfica de horas trabajadas por día
+- Eje X: días
+- Eje Y: horas
 
 ---
 
-## 10. Ajustes
-
-### Acceso
-Pantalla principal → **Ajustes**
-
-### Opciones disponibles
-- **Modo pantalla**
-  - Pantalla completa
-  - Ventana
-- **Host de base de datos**
-
-### Guardado
-Los cambios se guardan en `ajustes.json`.
-
-> Algunos cambios requieren **reiniciar automáticamente** la aplicación.
+## 9. Edición de registros
+Cuando se edita un registro de asistencia:
+1. El sistema solicita un **motivo de edición**.
+2. El motivo queda registrado para auditoría.
 
 ---
 
-## 11. Actualizaciones automáticas
+## 10. Cambio de contraseña
+Pasos:
+1. Acceda a **Ajustes**.
+2. Seleccione **Cambiar contraseña**.
+3. Introduzca:
+   - Contraseña actual
+   - Nueva contraseña
+   - Confirmación de la nueva contraseña
+4. Pulse **Confirmar**.
 
-- La aplicación comprueba versiones en GitHub al iniciar
-- Si existe una versión superior:
-  - Se descarga
-  - Se extrae
-  - Se reinicia la aplicación
-- El proceso es completamente automático
-
----
-
-## 12. Sistema de roles
-
-Los permisos dependen del rol asignado en la base de datos:
-
-| Rol          | Permisos |
-|--------------|----------|
-| empleado     | Ajustes |
-| administrador| Asistencia |
-| superuser    | Asistencia + SQL |
-| root/sin rol | Acceso completo |
+Si el proceso es correcto, se mostrará un mensaje de confirmación.
 
 ---
 
-## 13. Archivos importantes
+## 11. Módulo SQL (superusuario)
+Permite:
+- Visualizar las tablas de la base de datos
+- Ejecutar consultas SQL
+- Administrar información avanzada
 
-| Archivo | Función |
-|-------|--------|
-| `ajustes.json` | Configuración persistente |
-| `log.txt` | Registro de errores |
-| `ca-cert.pem` | Certificado SSL |
-| `actualizador.exe` | Actualización automática |
+Este módulo solo está disponible para usuarios con privilegios elevados.
+
+---
+
+## 12. Ajustes
+Desde este apartado se puede:
+- Configurar el host de la base de datos
+- Cambiar contraseña
+- Ajustes generales de la aplicación
+
+---
+
+## 13. Mensajes y avisos
+La aplicación utiliza ventanas emergentes (pop-ups) para:
+- Errores de conexión
+- Confirmaciones
+- Avisos de seguridad
+
+Es necesario pulsar **Confirmar** para continuar.
 
 ---
 
 ## 14. Registro de errores
+Los errores y excepciones se almacenan automáticamente en el archivo:
 
-Todos los errores se almacenan en:
-- log.txt
-
-Incluye:
-- Fecha y hora
-- Descripción del error
+log.txt
 
 ---
 
-## 15. Cierre de la aplicación
+### 15. Salida de la aplicación
+Para cerrar completamente BuzonGest:
 
-Desde el menú principal:
-- Pulsa **Salir**
-
-O bien cierra la ventana directamente.
+- Pulse el botón Salir desde el menú principal.
 
 ---
 
-## 16. Notas finales
-
-- No se almacenan contraseñas en texto plano
-- Todas las conexiones a la base de datos usan SSL
-- La aplicación está diseñada para uso multiusuario
-- El rendimiento se optimiza mediante carga asíncrona
+### 16. Ayuda
+Desde la barra superior puede acceder al apartado de ayuda online mediante el botón Ayuda.
 
 ---
 
 **Autor:** Kevin Marín Reina
-**Versión:** 3.2.0
-**Aplicación:** BuzonGest
-
-
-
+**Versión:** 3.9.1
