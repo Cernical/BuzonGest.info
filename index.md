@@ -151,7 +151,7 @@ Es necesario pulsar **Confirmar** para continuar.
 ## 14. Registro de errores
 Los errores y excepciones se almacenan automáticamente en el archivo:
 
-log.txt
+- log.txt
 
 ---
 
