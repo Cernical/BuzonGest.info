@@ -1,171 +1,181 @@
-# Manual de Usuario – **BuzonGest**
+# Manual de Usuario – BuzonGest v4.4.1
 
-## 1. Introducción
-BuzonGest es una aplicación multiplataforma (Windows y Android) diseñada para la **gestión de empleados, control de asistencia y consultas administrativas**, con conexión segura a una base de datos MySQL/MariaDB mediante SSL.
+## Introducción
 
-El sistema adapta sus funcionalidades según el **rol del usuario** (empleado, administrador o superusuario).
-
----
-
-## 2. Requisitos del sistema
-- Sistema operativo: **Windows o Android**
-- Conexión de red con acceso al servidor de base de datos
-- Credenciales de usuario válidas
-- Certificado SSL `ca-cert.pem` configurado
+**BuzonGest** es una aplicación de gestión empresarial diseñada para consultar, filtrar, editar y supervisar información de bases de datos internas, incluyendo clientes, inventario y lectores RFID.
 
 ---
 
-## 3. Inicio de la aplicación
-Al iniciar BuzonGest se muestra la **pantalla principal**, que incluye:
-- Barra superior de navegación
-- Botón de ayuda
-- Botón de inicio/cierre de sesión
-- Accesos a los distintos módulos
+# Inicio de la aplicación
 
-Si no existe conexión con la base de datos, la aplicación mostrará un aviso y deshabilitará el inicio de sesión.
+## Cómo abrir BuzonGest
 
----
-
-## 4. Inicio de sesión
-
-### 4.1 Acceso
-1. Pulse **Iniciar sesión**.
-2. Introduzca su **usuario** y **contraseña**.
-3. Pulse **Confirmar**.
-
-Si las credenciales son correctas, se habilitarán los módulos según su perfil.
-
-### 4.2 Cierre de sesión
-- Pulse **Cerrar sesión** en la barra superior.
-- Se bloquearán los accesos y se limpiará la sesión activa.
+1. Ejecute la aplicación desde el acceso directo configurado por su empresa.
+2. Espere a que cargue la pantalla principal.
+3. Desde el menú principal podrá acceder a las distintas áreas mediante el selector de navegación.
 
 ---
 
-## 5. Roles de usuario
+# Navegación general
 
-### Empleado
-- Acceso a **Área Personal**
-- Consulta de su información y registros
+## Menú principal
 
-### Administrador
-- Área Personal
-- Asistencia
-- Gestión de empleados
+La aplicación utiliza un sistema de navegación por pantallas.
 
-### Superusuario
-- Todas las funciones del administrador
-- Acceso al módulo **SQL**
+### Elementos comunes:
+
+* **Selector superior (Spinner / Menú desplegable):** permite cambiar entre módulos.
+* **Área central:** muestra datos, tablas o estados.
+* **Botones inferiores:** acciones como volver, actualizar, buscar o guardar.
 
 ---
 
-## 6. Pantalla principal (Inicio)
-Desde el menú principal se puede acceder a:
-- **Área Personal**
-- **Asistencia**
-- **SQL** (según permisos)
-- **Ajustes**
-- **Salir**
+# Consulta de datos
+
+Uno de los módulos principales permite visualizar información almacenada en la base de datos.
+
+## Funciones disponibles:
+
+### Visualizar registros
+
+* Los datos se muestran en formato tabla.
+* Cada fila representa un registro.
+* Cada columna contiene un campo específico.
+
+### Ordenar datos
+
+Puede ordenar registros según una columna concreta en:
+
+* Orden ascendente
+* Orden descendente
+
+### Paginación
+
+Cuando existen muchos registros, la aplicación carga resultados por bloques para mejorar el rendimiento.
 
 ---
 
-## 7. Área Personal
-Este módulo permite al usuario:
-- Consultar su información personal
-- Visualizar estadísticas de trabajo
-- Revisar horas trabajadas, descansos y puntualidad
+# Buscar y filtrar información
+
+## Búsqueda rápida
+
+1. Introduzca texto en el campo de búsqueda.
+2. Pulse **Buscar** o espere la actualización automática.
+3. La tabla mostrará solo coincidencias.
+
+## Consejos:
+
+* Puede buscar por nombre, código, observaciones u otros campos visibles.
+* Cuanto más específico sea el texto, más precisos serán los resultados.
 
 ---
 
-## 8. Asistencia
+# Edición de registros
 
-### 8.1 Funcionalidad
-Permite consultar y analizar los registros de asistencia por empleado o de forma global.
+BuzonGest permite modificar información directamente desde la tabla.
 
-### 8.2 Opciones disponibles
-- Selección de empleado o **Todos**
-- Rango de fechas
-- Cálculo automático de:
-  - Horas trabajadas
-  - Horas de descanso
-  - Horas extra (positivas o negativas)
-  - Horas festivas
-  - Porcentaje de puntualidad
-  - Jornadas incompletas
+## Cómo editar:
 
-### 8.3 Gráficas
-- Visualización gráfica de horas trabajadas por día
-- Eje X: días
-- Eje Y: horas
+1. Localice el registro deseado.
+2. Pulse el botón **Editar**.
+3. Los campos pasarán a modo editable.
+4. Modifique la información necesaria.
+5. Pulse **Guardar** para aplicar cambios.
+
+## Importante:
+
+* Los cambios se guardan directamente en la base de datos.
+* Verifique los datos antes de guardar.
+* Si no tiene permisos suficientes, algunos cambios pueden no aplicarse.
 
 ---
 
-## 9. Edición de registros
-Cuando se edita un registro de asistencia:
-1. El sistema solicita un **motivo de edición**.
-2. El motivo queda registrado para auditoría.
+# Supervisión de lectores RFID
+
+Este módulo permite comprobar el estado de conectividad de dispositivos RFID conectados a la red.
+
+## Información mostrada:
+
+* ID del lector
+* Modelo de hardware
+* Estado de conexión
+
+## Código de colores:
+
+* **Verde:** lector conectado correctamente
+* **Rojo:** lector sin conexión o inaccesible
+
+## Actualizar estado:
+
+Pulse el botón **Actualizar** para comprobar el estado en tiempo real.
 
 ---
 
-## 10. Cambio de contraseña
-Pasos:
-1. Acceda a **Ajustes**.
-2. Seleccione **Cambiar contraseña**.
-3. Introduzca:
-   - Contraseña actual
-   - Nueva contraseña
-   - Confirmación de la nueva contraseña
-4. Pulse **Confirmar**.
+# Botón Volver
 
-Si el proceso es correcto, se mostrará un mensaje de confirmación.
+El botón **Volver** devuelve al menú principal o a la pantalla anterior.
 
 ---
 
-## 11. Módulo SQL (superusuario)
-Permite:
-- Visualizar las tablas de la base de datos
-- Ejecutar consultas SQL
-- Administrar información avanzada
+# Mensajes del sistema
 
-Este módulo solo está disponible para usuarios con privilegios elevados.
+## Mensajes frecuentes:
 
----
+### “No hay datos”
 
-## 12. Ajustes
-Desde este apartado se puede:
-- Configurar el host de la base de datos
-- Cambiar contraseña
-- Ajustes generales de la aplicación
+No existen resultados para la consulta actual.
+
+### “Operación realizada”
+
+La acción se ejecutó correctamente.
 
 ---
 
-## 13. Mensajes y avisos
-La aplicación utiliza ventanas emergentes (pop-ups) para:
-- Errores de conexión
-- Confirmaciones
-- Avisos de seguridad
+# Buenas prácticas
 
-Es necesario pulsar **Confirmar** para continuar.
+## Recomendaciones de uso:
 
----
-
-## 14. Registro de errores
-Los errores y excepciones se almacenan automáticamente en el archivo:
-
-- log.txt
+* Revise los datos antes de guardar cambios.
+* Use filtros para localizar información rápidamente.
+* Actualice lectores RFID cuando sospeche problemas de red.
+* No cierre la aplicación durante operaciones de guardado.
 
 ---
 
-### 15. Salida de la aplicación
-Para cerrar completamente BuzonGest:
+# Solución de problemas
 
-- Pulse el botón Salir desde el menú principal.
+## La aplicación no muestra datos
+
+* Compruebe conexión con la red empresarial.
+* Revise que el filtro de búsqueda sea correcto.
+* Reinicie la consulta.
+
+## No puedo editar
+
+* Verifique permisos de usuario.
+* Asegúrese de haber pulsado **Editar** antes de modificar.
+
+## RFID aparece desconectado
+
+* Revise alimentación del dispositivo.
+* Compruebe cableado o red.
+* Pulse **Actualizar**.
 
 ---
 
-### 16. Ayuda
-Desde la barra superior puede acceder al apartado de ayuda online mediante el botón Ayuda.
+# Seguridad
+
+* No comparta accesos con personal no autorizado.
+* Evite modificar registros críticos sin supervisión.
+* Cierre sesión o aplicación al terminar.
 
 ---
 
-- **Autor:** Kevin Marín Reina
-- **Versión:** 3.9.1
+# Soporte técnico
+
+Si encuentra errores, contacte con el departamento de IT de su empresa indicando:
+
+* Módulo afectado
+* Acción realizada
+* Mensaje de error mostrado
+* Fecha y hora del incidente
